@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, browserHistory } from 'react-router';
-import routes from 'src/app/routes';
+
+import { ConnectedApp } from 'src/app';
 
 ReactDOM.render(
-  <Router routes={routes} history={browserHistory} />,
+  <ConnectedApp />,
   document.getElementById('root')
 );

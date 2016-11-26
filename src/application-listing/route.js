@@ -1,6 +1,8 @@
 import ApplicationListing from './ApplicationListing';
 
-export default {
-  component: ApplicationListing,
-  path: 'applications'
+export default function createRoute(store) {
+  return {
+    component: ApplicationListing,
+    path: 'applications',
+  };
 }

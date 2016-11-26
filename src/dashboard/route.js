@@ -1,5 +1,7 @@
 import Dashboard from './Dashboard';
 
-export default {
-  component: Dashboard,
-}
+export default function createRoute(store) {
+  return {
+    component: Dashboard,
+  }
+};
