@@ -4,8 +4,13 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 export default function App({ children }) {
   return (
-    <Container>
-      { children }
-    </Container>
+    <div>
+      <header>
+          Hack Cambridge - <em>Review System</em>
+        </header>
+      <Container>
+        { children }
+      </Container>
+    </div>
   )
 }
