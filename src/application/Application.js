@@ -1,13 +1,15 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Col, Progress, Button, Form, FormGroup, Input, Label } from 'reactstrap';
 
-export default function ApplicationListing() {
+function Application({ id, firstName, lastName }) {
   return (
     <div>
       <Col md="9">
         CV
       </Col>
       <Col md="3">
+        <h5>Application {id}: {firstName} {lastName}</h5>
         <h6>Learning Goals:</h6>
         <p>
           Lots of things
@@ -70,3 +72,9 @@ export default function ApplicationListing() {
     </div>
   );
 }
+
+function mapStateToProps({ application }) {
+  return application;
+}
+
+export default connect(mapStateToProps)(Application);
