@@ -1,0 +1,13 @@
+header {
+  height: 2.5em;
+  background-color: #e85248;
+  color: white;
+  padding: 0.5em;
+}
+header span.small-emph {
+  font-style: italic;
+  color: #FBB389;
+}
+header a {
+  color: inherit;
+}

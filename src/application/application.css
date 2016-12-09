@@ -1,0 +1,51 @@
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.panel-container {
+  display: flex;
+  overflow: hidden;
+  height: calc(100vh - 6.5em);
+  position: relative;
+  width: 100%;
+  backface-visibility: hidden;
+  will-change: overflow;
+}
+.cv-panel, .details-panel {
+  overflow: auto;
+  height: auto;
+  padding: 0;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: none;
+}
+.cv-panel object{
+  width: 100%;
+  min-height: 100%;
+}
+.details-panel {
+  padding: 1em;
+}
+.details-panel a:visited {
+  text-decoration: line-through;
+}
+.footer {
+  padding: 0.5em;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 4em;
+  background-color: #f5f5f5;
+}
+.form-inline > * {
+   margin:0 0.5em;
+}
+.right {
+  float: right;
+}
