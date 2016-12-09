@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { Container, Jumbotron, Row, Col, Progress, Button } from 'reactstrap';
-import '../css/main.css';
 
 export default function ApplicationListing() {
   return (
