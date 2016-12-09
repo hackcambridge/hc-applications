@@ -8,3 +8,6 @@ header span.small-emph {
   font-style: italic;
   color: #FBB389;
 }
+header a {
+  color: inherit;
+}
