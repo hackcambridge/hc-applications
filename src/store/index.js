@@ -1,11 +1,12 @@
-import { createStore, compose, combineReducers, applyMiddleware } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { createEpicMiddleware } from 'redux-observable';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-export function createAppStore(reducerMap) {
+export function createAppStore(reducerMap, rootEpic) {
   return createStore(
     combineReducers(reducerMap),
     composeWithDevTools(
-      applyMiddleware()
+      applyMiddleware(createEpicMiddleware(rootEpic))
     )
   );
 }
