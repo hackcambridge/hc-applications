@@ -1,16 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Container, Col, Progress, Button, Form, FormGroup, Input, Label } from 'reactstrap';
+import { Card, CardText, Container, Col, Progress, Button, Form, FormGroup, Input, Label } from 'reactstrap';
 import './application.css';
 
 function Application({ id, firstName, lastName }) {
   return (
-    <div>
+    <div className="review-container">
       <div className="panel-container">
         <Col md="8" className="cv-panel">
           <object data="http://www.cl.cam.ac.uk/teaching/1516/Algorithms/2016-stajano-algs-students-handout.pdf" type="application/pdf"></object>
         </Col>
         <Col md="4" className="details-panel">
+
+          <Card block className="cv-link">
+            <CardText>
+              <a href="http://www.cl.cam.ac.uk/teaching/1516/Algorithms/2016-stajano-algs-students-handout.pdf" target="_blank">
+                Read CV &rarr;
+              </a>
+            </CardText>
+          </Card>
           <h6>Learning Goals:</h6>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio dolorum unde voluptas omnis recusandae, facilis optio ipsam aliquid nostrum vel, expedita magni laboriosam, quas assumenda dicta asperiores voluptate, soluta dolore obcaecati amet? Nemo eum in aliquid tempore aspernatur reprehenderit mollitia labore, ea ex, esse sit quo, consequuntur harum iure, repudiandae commodi! Praesentium quidem ut fuga similique quod sit maiores optio, maxime ex labore! Ex minima, accusantium explicabo repellat ipsa. Numquam distinctio accusantium voluptatem cupiditate sapiente temporibus officia cumque pariatur iste aperiam quidem velit delectus dolorum iusto, eaque recusandae saepe vero odio debitis fugiat inventore. Vel voluptates qui optio eius aut.
@@ -34,31 +42,35 @@ function Application({ id, firstName, lastName }) {
           </ul>
         </Col>
       </div>
-      <footer className="footer">
-          <Form inline>
-
-          <Label for="criteria1">Criteria 1:</Label>
-          <Input type="select" name="criteria1" id="exampleSelect">
-            <option>0</option>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-          </Input>
-          <Label for="criteria2">Criteria 2:</Label>
-          <Input type="select" name="criteria2" id="exampleSelect">
-            <option>0</option>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-          </Input>
-          <Label for="criteria3">Criteria 3:</Label>
-          <Input type="select" name="criteria3" id="exampleSelect">
-            <option>0</option>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-          </Input>
-          <Button color="success" className="right">Next</Button>
+      <footer className="footer clearfix">
+        <Form inline>
+          <FormGroup>
+            <Label for="criteria1">Criteria 1</Label>{' '}
+            <Input type="select" name="criteria1" id="exampleSelect">
+              <option>0</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+            </Input>
+            {' '}
+            <Label for="criteria2">Criteria 2</Label>{' '}
+            <Input type="select" name="criteria2" id="exampleSelect">
+              <option>0</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+            </Input>
+            {' '}
+            <Label for="criteria3">Criteria 3</Label>{' '}
+            <Input type="select" name="criteria3" id="exampleSelect">
+              <option>0</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+            </Input>
+            {' '}
+          </FormGroup>
+          <Button color="success" className="next-button">Next</Button>
         </Form>
       </footer>
     </div>

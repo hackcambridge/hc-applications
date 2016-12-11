@@ -4,14 +4,18 @@ html {
   position: relative;
   min-height: 100%;
 }
-body {
+.review-container {
+  height: 100%;
   /* Margin bottom by footer height */
-  margin-bottom: 60px;
+  margin-bottom: 3.5em;
+}
+.cv-link {
+  display: none;
 }
 .panel-container {
   display: flex;
   overflow: hidden;
-  height: calc(100vh - 6.5em);
+  height: calc(100vh - 6em);
   position: relative;
   width: 100%;
   backface-visibility: hidden;
@@ -28,9 +32,31 @@ body {
   width: 100%;
   min-height: 100%;
 }
+.cv-panel {
+  width: 60%;
+}
 .details-panel {
+  width: 40%;
   padding: 1em;
 }
+
+@media screen and (max-width: 900px) {
+  /**
+   * Below 900px wide, trying to fit a PDF readbly
+   * into the page is not feasible. Link to it instead
+  */
+ .cv-panel {
+  display: none;
+  /* Note this also stops the embedded PDF from loading immediately */
+ }
+ .details-panel {
+  width: 100%;
+ }
+ .cv-link {
+  display: block;
+ }
+}
+
 .details-panel a:visited {
   text-decoration: line-through;
 }
@@ -40,12 +66,31 @@ body {
   bottom: 0;
   width: 100%;
   /* Set the fixed height of the footer here */
-  height: 4em;
+  height: 3.5em;
   background-color: #f5f5f5;
 }
-.form-inline > * {
-   margin:0 0.5em;
-}
-.right {
+.next-button {
   float: right;
+}
+
+@media screen and (max-width: 575px) {
+  /**
+   * When the form breaks into multiple rows,
+   * ditch the embedded scrolling panel behaviour
+   * and tidy up the form
+   */
+  .panel-container {
+    display: block;
+    height: auto;
+  }
+  .footer {
+    height: auto;
+    position: static;
+  }
+  .review-container {
+    margin-bottom: auto;
+  }
+  .next-button {
+    float: none;
+  }
 }
