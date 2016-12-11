@@ -74,6 +74,10 @@ const reducers = {
     ...state,
     application,
   }),
+  [ACTION_FETCH_APPLICATION]: (state) => ({
+    ...state,
+    application: null
+  }),
   [ACTION_SET_CRITERIA]: (state, { criteria }) => ({ ...state, criteria }),
 }
 
