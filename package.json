@@ -2,11 +2,9 @@
   "name": "hc-applications",
   "version": "0.1.0",
   "private": true,
-  "devDependencies": {
-    "react-scripts": "0.7.0"
-  },
   "dependencies": {
     "bootstrap": "4.0.0-alpha.5",
+    "pushstate-server": "^2.1.0",
     "react": "^15.4.1",
     "react-addons-css-transition-group": "^15.4.1",
     "react-addons-transition-group": "^15.4.1",
@@ -14,6 +12,7 @@
     "react-redux": "^4.4.6",
     "react-router": "^3.0.0",
     "react-router-redux": "^4.0.7",
+    "react-scripts": "0.7.0",
     "reactstrap": "^3.9.1",
     "redux": "^3.6.0",
     "redux-devtools-extension": "^1.0.0",
@@ -21,10 +20,15 @@
     "rxjs": "^5.0.0-rc.4",
     "whatwg-fetch": "^2.0.1"
   },
+  "engines": {
+    "node": "6.9.1"
+  },
   "scripts": {
-    "start": "export NODE_PATH=$NODE_PATH:./; react-scripts start",
+    "start": "node index",
+    "dev": "export NODE_PATH=$NODE_PATH:./; react-scripts start",
     "build": "export NODE_PATH=$NODE_PATH:./; react-scripts build",
     "test": "export NODE_PATH=$NODE_PATH:./; react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "heroku-postbuild": "yarn build"
   }
 }
