@@ -9,7 +9,7 @@ export default function ApplicationListing() {
         <h3>730 sign ups</h3>
         <h1>354 Applications</h1>
         <p>You are the #5 reviewer, keep at it!</p>
-        <Button tag={Link} to='/applications/1234' color="primary">Start Reviewing</Button>
+        <Button tag={Link} to='/applications/next' color="primary">Start Reviewing</Button>
         <Button tag={Link} to='/applications' size="large" color="success">See all Applications</Button>
       </Jumbotron>
       <Row>
