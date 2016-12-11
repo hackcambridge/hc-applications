@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Card, CardText, Container, Col, Progress, Button, Form, FormGroup, Input, Label } from 'reactstrap';
+import { Card, CardText, Col, Button, Form, FormGroup, Input, Label } from 'reactstrap';
 import './application.css';
 
 function Application({ id, firstName, lastName }) {

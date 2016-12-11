@@ -1,0 +1,9 @@
+.rc-table-body table {
+	width: 100%;
+}
+
+.empty-table {
+	display: inline-block;
+	width: 100%;
+	text-align: center;
+}
