@@ -1,2 +1,2 @@
-export { default as route } from './route';
-export { reducerMap } from './reducer';
+export { default as routes } from './routes';
+export { reducerMap, epic } from './reducer';
