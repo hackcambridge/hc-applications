@@ -5,7 +5,7 @@ import './application.css';
 
 function Application({ id, firstName, lastName }) {
   return (
-    <div>
+    <div className="review-container">
       <div className="panel-container">
         <Col md="8" className="cv-panel">
           <object data="http://www.cl.cam.ac.uk/teaching/1516/Algorithms/2016-stajano-algs-students-handout.pdf" type="application/pdf"></object>

@@ -4,7 +4,8 @@ html {
   position: relative;
   min-height: 100%;
 }
-body {
+.review-container {
+  height: 100%;
   /* Margin bottom by footer height */
   margin-bottom: 3.5em;
 }
@@ -86,7 +87,7 @@ body {
     height: auto;
     position: static;
   }
-  body {
+  .review-container {
     margin-bottom: auto;
   }
   .next-button {
