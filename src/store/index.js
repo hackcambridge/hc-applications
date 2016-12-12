@@ -1,12 +1,17 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { createEpicMiddleware } from 'redux-observable';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import { browserHistory } from 'react-router';
+import { routerMiddleware } from 'react-router-redux';
 
 export function createAppStore(reducerMap, rootEpic) {
   return createStore(
     combineReducers(reducerMap),
     composeWithDevTools(
-      applyMiddleware(createEpicMiddleware(rootEpic))
+      applyMiddleware(
+        createEpicMiddleware(rootEpic),
+        routerMiddleware(browserHistory)
+      ),
     )
   );
 }
