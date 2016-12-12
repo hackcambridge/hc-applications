@@ -1,15 +1,30 @@
 import React from 'react';
 import { Form } from 'reactstrap';
 import Table from 'rc-table';
+import * as api from './api';
 import './application-listing.css';
 
 class ApplicationList extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
+      applications: [],
       ratingCutoff: 0,
-      ratingComparison: 1
+      ratingComparison: 1,
+      gender: null,
+      inTeam: null,
     };
+    api.getApplications().then(applications => {
+      const data = applications.map(appl => ({
+        name: `${appl.hacker.firstName} ${appl.hacker.lastName}`,
+        gender: appl.hacker.gender,
+        country: appl.countryTravellingFrom,
+        inTeam: appl.inTeam,
+        rating: 5,
+        status: "In review"
+      }));
+      this.setState({ applications: data });
+    });
   }
 
   filter(changes) {
@@ -18,23 +33,24 @@ class ApplicationList extends React.Component {
 
   render () {
     const columns = [
-      { title: 'First Name', dataIndex: 'firstName', key:'firstName' },
-      { title: 'Last Name', dataIndex: 'lastName', key:'lastName' },
-      { title: 'Country', dataIndex: 'country', key:'country' },
-      { title: 'Rating', dataIndex: 'rating', key:'rating' },
+      { title: 'Name', dataIndex: 'name', key: 'name' },
+      { title: 'Gender', dataIndex: 'gender', key: 'gender' },
+      { title: 'Country', dataIndex: 'country', key: 'country' },
+      { title: 'In a Team', dataIndex: 'inTeam', key: 'inTeam' },
+      { title: 'Rating', dataIndex: 'rating', key: 'rating' },
+      { title: 'Status', dataIndex: 'status', key: 'status' },
     ];
 
-    const applications = [
-      { firstName: "Mark", lastName: "Otto", country: "GB", rating: 5 },
-      { firstName: "Jacob", lastName: "Thornton", country: "GB", rating: 3.5 },
-      { firstName: "Larry", lastName: "Bird", country: "FR", rating: 4 },
-    ];
-
-    const filteredApplications = applications.filter(appl => {
-      return appl.rating * this.state.ratingComparison >= this.state.ratingCutoff * this.state.ratingComparison;
+    const filteredApplications = this.state.applications.filter(appl => {
+      return appl.rating * this.state.ratingComparison >= this.state.ratingCutoff * this.state.ratingComparison &&
+        (this.state.gender === null || this.state.gender === appl.gender) &&
+        (this.state.inTeam === null || this.state.inTeam === appl.inTeam)
+      ;
     }).sort((a, b) => {
       return b.rating - a.rating || a.lastName.toLowerCase().localeCompare(b.lastName.toLowerCase()) || a.firstName.toLowerCase().localeCompare(b.firstName.toLowerCase());
     });
+
+    const displayApplications = filteredApplications.map(appl => Object.assign({}, appl, { inTeam: appl.inTeam ? "✔" : "✘" }));
 
     return (
       <div>
@@ -49,8 +65,24 @@ class ApplicationList extends React.Component {
             </select>
             <input id="rating-cutoff" type="number" min="0" max="10" defaultValue={this.state.ratingCutoff} onInput={ event => this.filter({ ratingCutoff: event.target.value }) } />
           </label>
+          <label>
+            Gender:
+            <select onChange={ event => this.filter({ gender: event.target.value !== "null" ? event.target.value : null }) }>
+              <option value="null">Both</option>
+              <option>Male</option>
+              <option>Female</option>
+            </select>
+          </label>
+          <label>
+            In a team:
+            <select onChange={ event => this.filter({ inTeam: event.target.value !== "null" ? event.target.value === "Yes" : null }) }>
+              <option value="null">Either</option>
+              <option>Yes</option>
+              <option>No</option>
+            </select>
+          </label>
         </Form>
-        <Table className="table" columns={columns} data={filteredApplications} emptyText={() => <span className="empty-table">No applications match the current filter</span>} />
+        <Table className="table" columns={columns} data={displayApplications} emptyText={() => <span className="empty-table">No applications match the current filter</span>} />
       </div>
     );
   }
