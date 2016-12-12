@@ -57,7 +57,7 @@ export function epic(action$, store) {
       .switchMap(() => api.getReviewCriteria(store.getState().user.authToken))
       .map(setCriteria),
     action$.ofType(ACTION_FETCH_APPLICATION)
-      .switchMap(({ applicationId }) => api.getApplication(store.getState().user.authToken, applicationId))
+      .switchMap(({ applicationId }) => api.getApplicationWithReview(store.getState().user.authToken, applicationId, store.getState().user.userInfo.id))
       .map(displayApplication),
     action$.ofType(ACTION_SUBMIT_REVIEW)
       .switchMap(({ scores, adminId, applicationId }) =>

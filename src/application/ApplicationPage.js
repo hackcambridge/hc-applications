@@ -9,9 +9,18 @@ function ApplicationPage({ application, criteria, onSubmit, adminId }) {
     return <p>Loading...</p>;
   }
 
+  const criteriaScores = { };
+
+  if (application.review) {
+    application.review.reviewCriterionScores.forEach(({ reviewCriterionId, score }) => {
+      criteriaScores[reviewCriterionId] = score;
+    });
+  }
+
   return <Application
     application={application}
     criteria={criteria}
+    criteriaScores={criteriaScores}
     key={application.id}
     onSubmit={(scores) => onSubmit(adminId, application.id, scores)} />;
 }
