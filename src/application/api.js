@@ -1,8 +1,16 @@
-import { makeApiCall } from 'src/api';
+import { makeApiCall, makeRawApiCall } from 'src/api';
+import { getReview } from 'src/user';
 
 export function getApplication(token, applicationId) {
   return makeApiCall(token, `applications/${applicationId}`)
     .then(({ application }) => application);
+}
+
+export function getApplicationWithReview(token, applicationId, adminId) {
+  return Promise.all([
+    getApplication(token, applicationId),
+    getReview(token, adminId, applicationId),
+  ]).then(([application, review]) => ({ ...application, review }));
 }
 
 export function getReviewCriteria(token) {
