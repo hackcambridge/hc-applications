@@ -23,9 +23,8 @@ export default function createRoutes(store) {
     },
     {
       component: ApplicationPage,
-      path: 'applications/:id',
+      path: 'applications/:applicationId',
       onEnter(nextState, replace, callback) {
-        store.dispatch(fetchApplication(nextState.params.id));
         callback();
       },
     }
