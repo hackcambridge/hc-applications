@@ -1,30 +1,19 @@
 import React from 'react';
 import { Form } from 'reactstrap';
 import Table from 'rc-table';
-import * as api from './api';
 import './application-listing.css';
 
 class ApplicationList extends React.Component {
   constructor (props) {
     super(props);
+    const { applications } = props;
     this.state = {
-      applications: [],
+      applications,
       ratingCutoff: 0,
       ratingComparison: 1,
       gender: null,
       inTeam: null,
     };
-    api.getApplications().then(applications => {
-      const data = applications.map(appl => ({
-        name: `${appl.hacker.firstName} ${appl.hacker.lastName}`,
-        gender: appl.hacker.gender,
-        country: appl.countryTravellingFrom,
-        inTeam: appl.inTeam,
-        rating: 5,
-        status: "In review"
-      }));
-      this.setState({ applications: data });
-    });
   }
 
   filter(changes) {
