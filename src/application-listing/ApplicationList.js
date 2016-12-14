@@ -36,7 +36,7 @@ class ApplicationList extends React.Component {
         (this.state.inTeam === null || this.state.inTeam === appl.inTeam)
       ;
     }).sort((a, b) => {
-      return b.rating - a.rating || a.lastName.toLowerCase().localeCompare(b.lastName.toLowerCase()) || a.firstName.toLowerCase().localeCompare(b.firstName.toLowerCase());
+      return b.rating - a.rating || a.name.toLowerCase().localeCompare(b.name.toLowerCase());
     });
 
     const displayApplications = filteredApplications.map(appl => Object.assign({}, appl, { inTeam: appl.inTeam ? "✔" : "✘" }));
