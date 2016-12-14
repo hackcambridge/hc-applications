@@ -6,32 +6,14 @@ import { ACTION_SIGN_IN_SUCCEEDED } from 'src/user';
 import * as api from './api';
 
 const BASE_NAME = 'application';
-const ACTION_FETCH_APPLICATION = `${BASE_NAME}/FETCH_APPLICATION`;
-const ACTION_DISPLAY_APPLICATION = `${BASE_NAME}/DISPLAY_APPLICATION`;
 const ACTION_SUBMIT_REVIEW = `${BASE_NAME}/SUBMIT_REVIEW`;
-
 const ACTION_SET_CRITERIA = `${BASE_NAME}/SET_CRITERIA`;
 
 const initialState = {
-  application: null,
   criteria: null,
 };
 
 // Action Creators
-
-export function fetchApplication(applicationId) {
-  return {
-    type: ACTION_FETCH_APPLICATION,
-    applicationId,
-  };
-}
-
-export function displayApplication(application) {
-  return {
-    type: ACTION_DISPLAY_APPLICATION,
-    application,
-  }
-}
 
 export function submitReview(adminId, applicationId, scores) {
   return {
@@ -56,9 +38,6 @@ export function epic(action$, store) {
     action$.ofType(ACTION_SIGN_IN_SUCCEEDED)
       .switchMap(() => api.getReviewCriteria(store.getState().user.authToken))
       .map(setCriteria),
-    action$.ofType(ACTION_FETCH_APPLICATION)
-      .switchMap(({ applicationId }) => api.getApplicationWithReview(store.getState().user.authToken, applicationId, store.getState().user.userInfo.id))
-      .map(displayApplication),
     action$.ofType(ACTION_SUBMIT_REVIEW)
       .switchMap(({ scores, adminId, applicationId }) =>
         api.submitReview(store.getState().user.authToken, adminId, applicationId, scores)
@@ -70,14 +49,6 @@ export function epic(action$, store) {
 // Reducers
 
 const reducers = {
-  [ACTION_DISPLAY_APPLICATION]: (state, { application }) => ({
-    ...state,
-    application,
-  }),
-  [ACTION_FETCH_APPLICATION]: (state) => ({
-    ...state,
-    application: null
-  }),
   [ACTION_SET_CRITERIA]: (state, { criteria }) => ({ ...state, criteria }),
 }
 
