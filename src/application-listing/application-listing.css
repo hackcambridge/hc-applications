@@ -4,7 +4,15 @@
 
 .rc-table th, .rc-table td {
 	text-align: center;
-	width: calc(100% / 6);
+	width: calc(100% / 7);
+}
+
+.rc-table tbody tr {
+	cursor: pointer;
+}
+
+.rc-table tbody tr:hover {
+	background-color: #eee;
 }
 
 .empty-table {

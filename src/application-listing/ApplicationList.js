@@ -22,6 +22,7 @@ class ApplicationList extends React.Component {
 
   render () {
     const columns = [
+      { title: 'ID', dataIndex: 'id', key: 'id' },
       { title: 'Name', dataIndex: 'name', key: 'name' },
       { title: 'Gender', dataIndex: 'gender', key: 'gender' },
       { title: 'Country', dataIndex: 'country', key: 'country' },
@@ -71,7 +72,7 @@ class ApplicationList extends React.Component {
             </select>
           </label>
         </Form>
-        <Table className="table" columns={columns} data={displayApplications} emptyText={() => <span className="empty-table">No applications match the current filter</span>} />
+        <Table className="table" columns={columns} data={displayApplications} emptyText={() => <span className="empty-table">No applications match the current filter</span>} onRowClick={(record, index) => window.location = `applications/${record.id}`} />
       </div>
     );
   }
