@@ -44,11 +44,11 @@ export function signInFailed() {
   };
 }
 
-export function signInSucceeded(userInfo, token) {
+export function signInSucceeded(userInfo, authToken) {
   return {
     type: ACTION_SIGN_IN_SUCCEEDED,
     userInfo,
-    token,
+    authToken,
   };
 }
 
@@ -79,7 +79,7 @@ export function epic(action$) {
               save.saveUser(email, token);
             },
           })
-          .map(({ userInfo, token }) => signInSucceeded(userInfo, token))
+          .map(({ userInfo, authToken }) => signInSucceeded(userInfo, authToken))
           .catch((e) => Rx.Observable.of(signInFailed()))
       )
   );

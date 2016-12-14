@@ -1,7 +1,7 @@
-import Dashboard from './Dashboard';
+import DashboardPage from './DashboardPage';
 
 export default function createRoute(store) {
   return {
-    component: Dashboard,
+    component: DashboardPage,
   }
 };
