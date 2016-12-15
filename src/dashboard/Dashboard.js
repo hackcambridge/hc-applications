@@ -6,7 +6,7 @@ function correctPlural(amount, singular = '', plural = 's') {
   return (amount == 1) ? singular : plural;
 }
 
-export default function Dashboard({ signups, applications, reviews }) {
+export default function Dashboard({ signups, applications, reviews, userReviews, userGoal }) {
   return (
     <Container>
       <Jumbotron>
@@ -20,8 +20,8 @@ export default function Dashboard({ signups, applications, reviews }) {
         <Col md="6">
           Group target ({reviews}/{applications}):
           <Progress value={reviews} max={applications} color="success"/>
-          Personal target (not working yet):
-          <Progress value="25" max="100" color="warning"/>
+          Personal target ({userReviews}/{userGoal}):
+          <Progress value={userReviews} max={userGoal} color="warning"/>
         </Col>
         <Col md="6">
           Leaderboard (not working yet):
