@@ -56,9 +56,11 @@ class ApplicationList extends React.Component {
           <label>
             Gender:
             <select onChange={ event => this.filter({ gender: event.target.value !== "null" ? event.target.value : null }) }>
-              <option value="null">Both</option>
+              <option value="null">Show All</option>
               <option>Male</option>
               <option>Female</option>
+              <option>Non-Binary</option>
+              <option value="I prefer not to say">Unknown</option>
             </select>
           </label>
           <label>
