@@ -6,9 +6,7 @@ import './application-listing.css';
 class ApplicationList extends React.Component {
   constructor (props) {
     super(props);
-    const { applications } = props;
     this.state = {
-      applications,
       ratingCutoff: 0,
       ratingComparison: 1,
       gender: null,
@@ -31,7 +29,7 @@ class ApplicationList extends React.Component {
       { title: 'Status', dataIndex: 'status', key: 'status' },
     ];
 
-    const filteredApplications = this.state.applications.filter(appl => {
+    const filteredApplications = this.props.applications.filter(appl => {
       return appl.rating * this.state.ratingComparison >= this.state.ratingCutoff * this.state.ratingComparison &&
         (this.state.gender === null || this.state.gender === appl.gender) &&
         (this.state.inTeam === null || this.state.inTeam === appl.inTeam)
