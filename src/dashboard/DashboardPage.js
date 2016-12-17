@@ -4,16 +4,26 @@ import Rx from 'rxjs';
 import React from 'react';
 
 import Dashboard from './Dashboard';
-import { getStats } from './api';
+import { getStatsWithUser } from './api';
 
-const mapStateToProps = ({ user: { authToken }}) => ({ authToken });
+const mapStateToProps = ({ user: { authToken, userInfo: { id: userId } }}) => ({ authToken, userId });
 
 export default connect(mapStateToProps)(componentFromStream(props$ => 
-  props$
-    .map(({ authToken }) => authToken)
-    .distinctUntilChanged()
-    .switchMap(authToken => getStats(authToken))
-    .map(({ hackerCount, hackerApplicationCount, applicationsReviewedCount }) => 
-      <Dashboard signups={hackerCount} applications={hackerApplicationCount} reviews={applicationsReviewedCount} />
+  Rx.Observable.combineLatest(
+    props$
+      .map(({ authToken }) => authToken)
+      .distinctUntilChanged(),
+    props$
+      .map(({ userId }) => userId)
+      .distinctUntilChanged(),
+  )
+    .switchMap(([authToken, userId]) => getStatsWithUser(authToken, userId))
+    .map(({ globalStats, userStats }) => 
+      <Dashboard 
+        signups={globalStats.hackerCount}
+        applications={globalStats.hackerApplicationCount}
+        reviews={globalStats.applicationsReviewedCount}
+        userReviews={userStats.applicationsReviewedCount}
+        userGoal={userStats.applicationsReviewedGoal} />
     ).startWith(<p>Loading...</p>)
 ));
