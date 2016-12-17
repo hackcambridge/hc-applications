@@ -1,8 +1,8 @@
-import ApplicationListing from './ApplicationListing';
+import ApplicationListingPage from './ApplicationListingPage';
 
 export default function createRoute(store) {
   return {
-    component: ApplicationListing,
+    component: ApplicationListingPage,
     path: 'applications',
   };
 }
