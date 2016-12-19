@@ -17,13 +17,19 @@ export default connect(mapStateToProps)(componentFromStream(props$ =>
       .map(({ userId }) => userId)
       .distinctUntilChanged(),
   )
-    .switchMap(([authToken, userId]) => getStatsWithUser(authToken, userId))
+    .switchMap(([authToken, userId]) => getStatsWithUser(authToken, userId).then(stats => {
+    	const index = stats.globalStats.leaderboard.findIndex(reviewer => reviewer.id === userId);
+		stats.userStats.leaderboardPosition = index !== -1 ? index + 1 : null;
+		return stats;
+    }))
     .map(({ globalStats, userStats }) => 
       <Dashboard 
         signups={globalStats.hackerCount}
         applications={globalStats.hackerApplicationCount}
         reviews={globalStats.applicationsReviewedCount}
         userReviews={userStats.applicationsReviewedCount}
-        userGoal={userStats.applicationsReviewedGoal} />
+        userGoal={userStats.applicationsReviewedGoal}
+        leaderboard={globalStats.leaderboard}
+        leaderboardPosition={userStats.leaderboardPosition} />
     ).startWith(<p>Loading...</p>)
 ));
