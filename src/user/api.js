@@ -19,3 +19,8 @@ export function validateSignInCredentials(email, token) {
     };
   });
 }
+
+export function getReview(token, adminId, applicationId) {
+  return makeApiCall(token, `admins/${adminId}/reviews/${applicationId}`)
+    .then(({ applicationReview }) => applicationReview);
+}

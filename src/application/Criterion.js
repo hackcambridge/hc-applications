@@ -11,7 +11,7 @@ function parseCriterionValue(value) {
   return attemptedInteger;
 }
 
-export default function Criterion({ criterion: { id, label, maxValue }, onChange }) {
+export default function Criterion({ criterion: { id, label, maxValue }, onChange, score }) {
   const elementId = `criterion-${id}`;
 
   const criterionValues = [];
@@ -23,7 +23,7 @@ export default function Criterion({ criterion: { id, label, maxValue }, onChange
   return (
     <span key={id}>
       <Label for={elementId}>{label}</Label>{' '}
-      <Input type="select" id={elementId} onChange={(event) => onChange(parseCriterionValue(event.target.value))}>
+      <Input type="select" value={score} id={elementId} onChange={(event) => onChange(parseCriterionValue(event.target.value))}>
         <option value={null}></option>
         {criterionValues}
       </Input>

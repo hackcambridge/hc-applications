@@ -1,16 +1,15 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { Card, CardText, Container, Col, Progress, Button, Form, Input, Label } from 'reactstrap';
+import { Card, CardText, Col, Button, Form } from 'reactstrap';
 
 import './application.css';
 import ApplicationText from './ApplicationText';
 import Criterion from './Criterion';
 
 export default class Application extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      criteriaValues: { },
+      criteriaValues: Object.assign({ }, this.props.criteriaScores),
     };
   }
 
@@ -69,6 +68,7 @@ export default class Application extends React.Component {
             {this.props.criteria.map((criterion) =>
               <Criterion 
                 criterion={criterion}
+                score={this.state.criteriaValues[criterion.id]}
                 key={criterion.id}
                 onChange={(value) => this.updateCriterion(criterion.id, value)} />)}
 

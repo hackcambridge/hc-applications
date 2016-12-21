@@ -5,6 +5,7 @@
   "dependencies": {
     "bootstrap": "4.0.0-alpha.5",
     "pushstate-server": "^2.1.0",
+    "rc-table": "^5.2.2",
     "react": "^15.4.1",
     "react-addons-css-transition-group": "^15.4.1",
     "react-addons-transition-group": "^15.4.1",
@@ -15,10 +16,12 @@
     "react-router-redux": "^4.0.7",
     "react-scripts": "0.7.0",
     "reactstrap": "^3.9.1",
+    "recompose": "^0.21.0",
     "redux": "^3.6.0",
     "redux-devtools-extension": "^1.0.0",
     "redux-observable": "^0.12.2",
     "rxjs": "^5.0.0-rc.4",
+    "shallow-equals": "^0.0.0",
     "whatwg-fetch": "^2.0.1"
   },
   "engines": {

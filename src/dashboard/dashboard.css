@@ -1,0 +1,10 @@
+.leaderboard-name {
+	display: inline-block;
+	width: 7em;
+}
+
+.leaderboard-score {
+	display: inline-block;
+	width: 3em;
+	text-align: right;
+}
