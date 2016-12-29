@@ -22,9 +22,8 @@ function getApplicationFromProps(props$) {
   return props$
     .map(({ params: { applicationId }, adminId, authToken }) => ({ applicationId, adminId, authToken }))
     .distinctUntilChanged(shallowEquals)
-    .switchMap(({ applicationId, adminId, authToken }) => 
-      Rx.Observable.from(getApplicationWithReview(authToken, applicationId, adminId)).startWith(null)
-    );
+    .switchMap(({ applicationId, adminId, authToken }) => getApplicationWithReview(authToken, applicationId, adminId))
+    .startWith(null);
 }
 
 function renderApplication(application, { criteria, onSubmit, adminId }) {
