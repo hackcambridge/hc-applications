@@ -30,6 +30,11 @@ export default connect(mapStateToProps)(componentFromStream(props$ =>
         userReviews={userStats.applicationsReviewedCount}
         userGoal={userStats.applicationsReviewedGoal}
         leaderboard={globalStats.leaderboard}
-        leaderboardPosition={userStats.leaderboardPosition} />
+        leaderboardPosition={userStats.leaderboardPosition} 
+        rsvpedNo={globalStats.rsvpNoCount}
+        ticketed={globalStats.ticketCount}
+        turnedDown={globalStats.rejectionsCount}
+        invited={globalStats.invitationsCount}
+        />
     ).startWith(<p>Loading...</p>)
 ));
