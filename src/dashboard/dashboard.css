@@ -8,3 +8,7 @@
 	width: 3em;
 	text-align: right;
 }
+
+.progress {
+	overflow: hidden;
+}
