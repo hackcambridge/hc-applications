@@ -4,7 +4,7 @@
 
 .rc-table th, .rc-table td {
 	text-align: center;
-	width: calc(100% / 7);
+	width: calc(100% / 8);
 }
 
 .rc-table tbody tr {
@@ -23,4 +23,9 @@
 
 label {
 	margin-left: 8pt;
+}
+
+button {
+	float: right;
+	margin: 0 4pt;
 }
