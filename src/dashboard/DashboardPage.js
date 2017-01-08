@@ -24,17 +24,7 @@ export default connect(mapStateToProps)(componentFromStream(props$ =>
     }))
     .map(({ globalStats, userStats }) => 
       <Dashboard 
-        signups={globalStats.hackerCount}
-        applications={globalStats.hackerApplicationCount}
-        reviews={globalStats.applicationsReviewedCount}
-        userReviews={userStats.applicationsReviewedCount}
-        userGoal={userStats.applicationsReviewedGoal}
-        leaderboard={globalStats.leaderboard}
-        leaderboardPosition={userStats.leaderboardPosition} 
-        rsvpedNo={globalStats.rsvpNoCount}
-        ticketed={globalStats.ticketCount}
-        turnedDown={globalStats.rejectionsCount}
-        invited={globalStats.invitationsCount}
-        />
+        globalStats={globalStats}
+        userStats={userStats} />
     ).startWith(<p>Loading...</p>)
 ));
