@@ -7,7 +7,7 @@ export function makeRawApiCall(accessToken, endpoint, options = { }) {
   headers.append('Authorization', `Bearer ${accessToken}`);
   headers.append('Content-Type', 'application/json');
 
-  return fetch(`${API_BASE}${endpoint}`, Object.assign({ credentials: true }, options, { headers }));
+  return fetch(`${API_BASE}${endpoint}`, Object.assign({ credentials: 'same-origin' }, options, { headers }));
 }
 
 export function makeApiCall(accessToken, endpoint, options) {
