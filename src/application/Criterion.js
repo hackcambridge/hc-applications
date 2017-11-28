@@ -1,8 +1,8 @@
 import React from 'react';
-import { FormGroup, Input, Label} from 'reactstrap';
+import { Input, Label} from 'reactstrap';
 
 function parseCriterionValue(value) {
-  const attemptedInteger = parseInt(value);
+  const attemptedInteger = parseInt(value, 10);
 
   if (isNaN(attemptedInteger)) {
     return null;
