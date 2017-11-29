@@ -1,7 +1,5 @@
-import React from 'react';
 import ApplicationPage from './ApplicationPage';
 import NoReviews from './NoReviews';
-import { fetchApplication } from './reducer';
 import { getNextReviewApplicationId } from './api';
 
 export default function createRoutes(store) {

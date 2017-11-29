@@ -38,7 +38,7 @@ export default class Application extends React.Component {
       <div className="review-container">
         <div className="panel-container">
           <Col md="8" className="cv-panel">
-            <object data={this.props.application.cv} type="application/pdf"></object>
+            <object data={this.props.application.cv} type="application/pdf">Loading CV...</object>
           </Col>
           <Col md="4" className="details-panel">
 

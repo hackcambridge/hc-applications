@@ -1,4 +1,4 @@
-import { makeApiCall, makeRawApiCall } from 'src/api';
+import { makeApiCall } from 'src/api';
 import { getReview } from 'src/user';
 
 export function getApplication(token, applicationId) {

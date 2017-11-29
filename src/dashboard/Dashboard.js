@@ -32,6 +32,7 @@ function ApplicantBreakdown({ applicationCount, reviewedCount, rsvpedNoCount, ti
             innerRadius={80}
             outerRadius={100}
             fill="#8884d8"
+            dataKey="value"
             data={[
               { name: 'Reviewed', value: reviewedCount, fill: '#0275d8' },
               { name: 'Awaiting Review', value: applicationCount - reviewedCount, fill: '#aaa' },
@@ -42,6 +43,7 @@ function ApplicantBreakdown({ applicationCount, reviewedCount, rsvpedNoCount, ti
             innerRadius={55}
             outerRadius={75}
             fill="#8884d8"
+            dataKey="value"
             data={[
               { name: 'Invited', value: invitedCount, fill: '#5bc0de' },
               { name: 'Turned Down', value: turnedDownCount, fill: '#f0ad4e' },
@@ -53,6 +55,7 @@ function ApplicantBreakdown({ applicationCount, reviewedCount, rsvpedNoCount, ti
             outerRadius={50}
             endAngle={invitedCount / applicationCount * 360}
             fill="#8884d8"
+            dataKey="value"
             data={[
               { name: 'RSVP No', value: rsvpedNoCount, fill: '#d9534f' },
               { name: 'Expired', value: expiredCount, fill: '#333' },
