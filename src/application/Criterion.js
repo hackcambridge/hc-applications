@@ -21,7 +21,7 @@ export default function Criterion({ criterion: { id, label, maxValue }, onChange
   }
 
   return (
-    <span key={id}>
+    <span key={id} className="d-inline-flex">
       <Label for={elementId}>{label}</Label>{' '}
       <Input type="select" value={score} id={elementId} onChange={(event) => onChange(parseCriterionValue(event.target.value))}>
         <option value={null}></option>
