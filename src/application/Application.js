@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card, CardText, Col, Button, Form } from 'reactstrap';
+import { Link } from 'react-router';
 
 import './application.css';
 import ApplicationText from './ApplicationText';
@@ -73,8 +74,14 @@ export default class Application extends React.Component {
                 onChange={(value) => this.updateCriterion(criterion.id, value)} />)}
 
             <Button
+              color="warning"
+              className="footer-button"
+              tag={Link}
+              to='/applications/next'>Skip</Button>
+
+            <Button
               color="success"
-              className="next-button"
+              className="footer-button"
               disabled={!this.shouldEnableSubmitButton()}
               onClick={() => this.props.onSubmit(this.getCriteriaValuesAsArray())}>Next</Button>
           </Form>
