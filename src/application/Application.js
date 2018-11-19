@@ -50,17 +50,23 @@ export default class Application extends React.Component {
                 </a>
               </CardText>
             </Card>
-            <h6>Learning Goals:</h6>
+            <h6>Learning goals:</h6>
             <ApplicationText text={this.props.application.learningGoal} />
 
             <h6>Interests:</h6>
             <ApplicationText text={this.props.application.interests} />
 
-            <h6>Recent Accomplishments:</h6>
+            <h6>Recent accomplishments:</h6>
             <ApplicationText text={this.props.application.recentAccomplishment} />
 
             <h6>Links:</h6>
             <ApplicationText text={this.props.application.links} />
+
+            <h6>Roles interested in:</h6>
+            <ApplicationText text={this.props.application.developmentRoles.length === 0 ? 'Don’t know yet' : this.props.application.developmentRoles.join(', ')} />
+
+            <h6>Anything else we should know:</h6>
+            <ApplicationText text={this.props.application.otherInfo || ''} />
           </Col>
         </div>
 
