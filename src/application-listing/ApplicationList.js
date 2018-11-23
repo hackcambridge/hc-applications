@@ -44,9 +44,9 @@ class ApplicationList extends React.Component {
         (this.state.needsVisaOnly === null || this.state.needsVisaOnly === true && appl.visaNeededBy !== null ||
           this.state.needsVisaOnly === false && appl.visaNeededBy === null) &&
         (this.state.showDisqualified || !appl.isDisqualified)
-    ).sort((a, b) => {
-      return b.rating - a.rating || a.name.toLowerCase().localeCompare(b.name.toLowerCase());
-    });
+    ).sort((a, b) =>
+      b.rating - a.rating || a.name.toLowerCase().localeCompare(b.name.toLowerCase())
+    );
 
     const dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
     const displayApplications = filteredApplications.map(appl => Object.assign({}, appl, {
