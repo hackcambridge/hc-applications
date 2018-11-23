@@ -13,6 +13,8 @@ class ApplicationList extends React.Component {
       institution: "",
       gender: null,
       inTeam: null,
+      needsVisaOnly: null,
+      showDisqualified: false
     };
   }
 
@@ -28,22 +30,29 @@ class ApplicationList extends React.Component {
       { title: 'Country', dataIndex: 'country', key: 'country' },
       { title: 'Institution', dataIndex: 'institution', key: 'institution' },
       { title: 'In a Team', dataIndex: 'inTeam', key: 'inTeam' },
+      { title: 'Visa Needed By', dataIndex: 'visaNeededBy', key: 'visaNeededBy' },
       { title: 'Rating', dataIndex: 'rating', key: 'rating' },
       { title: 'Status', dataIndex: 'status', key: 'status' },
     ];
 
-    const filteredApplications = this.props.applications.filter(appl => {
-      return appl.rating * this.state.ratingComparison >= this.state.ratingCutoff * this.state.ratingComparison &&
+    const filteredApplications = this.props.applications.filter(appl =>
+      appl.rating * this.state.ratingComparison >= this.state.ratingCutoff * this.state.ratingComparison &&
         (this.state.country === "" || appl.country.toUpperCase() === this.state.country.toUpperCase()) &&
         (this.state.institution === "" || appl.institution.toLowerCase().indexOf(this.state.institution.toLowerCase()) !== -1) &&
         (this.state.gender === null || this.state.gender === appl.gender) &&
-        (this.state.inTeam === null || this.state.inTeam === appl.inTeam)
-      ;
-    }).sort((a, b) => {
+        (this.state.inTeam === null || this.state.inTeam === appl.inTeam) &&
+        (this.state.needsVisaOnly === null || this.state.needsVisaOnly === true && appl.visaNeededBy !== null ||
+          this.state.needsVisaOnly === false && appl.visaNeededBy === null) &&
+        (this.state.showDisqualified || !appl.isDisqualified)
+    ).sort((a, b) => {
       return b.rating - a.rating || a.name.toLowerCase().localeCompare(b.name.toLowerCase());
     });
 
-    const displayApplications = filteredApplications.map(appl => Object.assign({}, appl, { inTeam: appl.inTeam ? "✔" : "✘" }));
+    const dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+    const displayApplications = filteredApplications.map(appl => Object.assign({}, appl, {
+      inTeam: appl.inTeam ? "✔" : "✘",
+      visaNeededBy: appl.visaNeededBy !== null ? (new Date(appl.visaNeededBy)).toLocaleDateString(undefined, dateOptions) : null
+    }));
 
     return (
       <div>
@@ -83,6 +92,18 @@ class ApplicationList extends React.Component {
               <option>Yes</option>
               <option>No</option>
             </select>
+          </label>
+          <label>
+            Needs visa:
+            <select onChange={ event => this.filter({ needsVisaOnly: event.target.value !== "null" ? event.target.value === "Yes" : null }) }>
+              <option value="null">Show All</option>
+              <option>Yes</option>
+              <option>No</option>
+            </select>
+          </label>
+          <label>
+            Show disqualified:
+            <input type="checkbox" defaultValue={this.state.isDisqualified} onChange={ event => this.filter({ showDisqualified: event.target.value }) } />
           </label>
           <button className="btn btn-sm btn-danger" onClick={ event => event.preventDefault() }>Turn Down All</button>
           <button className="btn btn-sm btn-success" onClick={ event => event.preventDefault() }>Invite All</button>
