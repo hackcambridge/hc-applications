@@ -31,3 +31,10 @@ export function submitReview(token, adminId, applicationId, scores) {
     }),
   });
 }
+
+export function skipReview(token, adminId, applicationId) {
+  return makeApiCall(token, `admins/${adminId}/skip-review/${applicationId}`, {
+    method: 'POST',
+    body: ''
+  });
+}

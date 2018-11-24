@@ -82,8 +82,7 @@ export default class Application extends React.Component {
             <Button
               color="warning"
               className="footer-button"
-              tag={Link}
-              to='/applications/next'>Skip</Button>
+              onClick={this.props.onSkip}>Skip</Button>
 
             <Button
               color="success"
