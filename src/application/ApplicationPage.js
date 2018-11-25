@@ -4,7 +4,7 @@ import { componentFromStream } from 'recompose';
 import shallowEquals from 'shallow-equals';
 import Rx from 'rxjs';
 
-import { submitReview } from './reducer';
+import { skipReview, submitReview } from './reducer';
 import Application from './Application';
 import { getApplicationWithReview } from './api';
 
@@ -15,6 +15,7 @@ const mapStateToProps = ({ application, user: { authToken, userInfo } }) => ({
 });
 
 const mapDispatchToProps = {
+  onSkip: skipReview,
   onSubmit: submitReview,
 };
 
@@ -27,7 +28,7 @@ function getApplicationFromProps(props$) {
     );
 }
 
-function renderApplication(application, { criteria, onSubmit, adminId }) {
+function renderApplication(application, { criteria, onSkip, onSubmit, adminId }) {
   if ((!application) || (!criteria)) {
     return <p>Loading...</p>;
   }
@@ -45,6 +46,7 @@ function renderApplication(application, { criteria, onSubmit, adminId }) {
     criteria={criteria}
     criteriaScores={criteriaScores}
     key={application.id}
+    onSkip={_ => onSkip(adminId, application.id)}
     onSubmit={(scores) => onSubmit(adminId, application.id, scores)} />;
 }
 

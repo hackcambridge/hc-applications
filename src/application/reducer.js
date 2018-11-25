@@ -6,6 +6,7 @@ import { ACTION_SIGN_IN_SUCCEEDED } from 'src/user';
 import * as api from './api';
 
 const BASE_NAME = 'application';
+const ACTION_SKIP_REVIEW = `${BASE_NAME}/SKIP_REVIEW`;
 const ACTION_SUBMIT_REVIEW = `${BASE_NAME}/SUBMIT_REVIEW`;
 const ACTION_SET_CRITERIA = `${BASE_NAME}/SET_CRITERIA`;
 
@@ -14,6 +15,14 @@ const initialState = {
 };
 
 // Action Creators
+
+export function skipReview(adminId, applicationId) {
+  return {
+    type: ACTION_SKIP_REVIEW,
+    adminId,
+    applicationId
+  }
+}
 
 export function submitReview(adminId, applicationId, scores) {
   return {
@@ -41,6 +50,11 @@ export function epic(action$, store) {
     action$.ofType(ACTION_SUBMIT_REVIEW)
       .switchMap(({ scores, adminId, applicationId }) =>
         api.submitReview(store.getState().user.authToken, adminId, applicationId, scores)
+      )
+      .map(() => push('/applications/next')),
+    action$.ofType(ACTION_SKIP_REVIEW)
+      .switchMap(({ adminId, applicationId }) =>
+        api.skipReview(store.getState().user.authToken, adminId, applicationId)
       )
       .map(() => push('/applications/next'))
   );
