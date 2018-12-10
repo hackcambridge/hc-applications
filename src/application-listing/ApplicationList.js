@@ -23,9 +23,11 @@ class ApplicationList extends React.Component {
   }
 
   render () {
+    const emailLink = app => app.email != null ? <span> <a href={`mailto:${app.email}`}>✉</a></span> : '';
+
     const columns = [
       { title: 'ID', dataIndex: 'id', key: 'id' },
-      { title: 'Name', dataIndex: 'name', key: 'name' },
+      { title: 'Name', dataIndex: '', key: 'name', render: (_value, app) => (<span>{app.name}{emailLink(app)}</span>) },
       { title: 'Gender', dataIndex: 'gender', key: 'gender' },
       { title: 'Country', dataIndex: 'country', key: 'country' },
       { title: 'Institution', dataIndex: 'institution', key: 'institution' },
