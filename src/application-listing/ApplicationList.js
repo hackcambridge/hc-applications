@@ -24,6 +24,8 @@ class ApplicationList extends React.Component {
 
   render () {
     const emailLink = app => app.email != null ? <span> <a href={`mailto:${app.email}`}>✉</a></span> : '';
+    // Use `Number(x.toFixed(n))` to avoid trailing zeros
+    const ratingWithStdev = app => app.rating != null ? <span>{Number(app.rating.toFixed(2))} ± {Number(app.ratingStdev.toFixed(1))}</span> : '';
 
     const columns = [
       { title: 'ID', dataIndex: 'id', key: 'id' },
@@ -33,7 +35,7 @@ class ApplicationList extends React.Component {
       { title: 'Institution', dataIndex: 'institution', key: 'institution' },
       { title: 'In a Team', dataIndex: 'inTeam', key: 'inTeam' },
       { title: 'Visa Needed By', dataIndex: 'visaNeededBy', key: 'visaNeededBy' },
-      { title: 'Rating', dataIndex: 'rating', key: 'rating' },
+      { title: 'Rating', dataIndex: '', key: 'rating', render: (_value, app) => ratingWithStdev(app) },
       { title: 'Status', dataIndex: 'status', key: 'status' },
     ];
 
