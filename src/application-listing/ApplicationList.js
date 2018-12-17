@@ -14,7 +14,7 @@ class ApplicationList extends React.Component {
       gender: null,
       inTeam: null,
       needsVisaOnly: null,
-      showDisqualified: false
+      showWithdrawn: false
     };
   }
 
@@ -47,7 +47,7 @@ class ApplicationList extends React.Component {
         (this.state.inTeam === null || this.state.inTeam === appl.inTeam) &&
         (this.state.needsVisaOnly === null || this.state.needsVisaOnly === true && appl.visaNeededBy !== null ||
           this.state.needsVisaOnly === false && appl.visaNeededBy === null) &&
-        (this.state.showDisqualified || !appl.isDisqualified)
+        (this.state.showWithdrawn || !appl.isWithdrawn)
     ).sort((a, b) =>
       b.rating - a.rating || a.name.toLowerCase().localeCompare(b.name.toLowerCase())
     );
@@ -106,8 +106,8 @@ class ApplicationList extends React.Component {
             </select>
           </label>
           <label>
-            Show disqualified:
-            <input type="checkbox" defaultValue={this.state.isDisqualified} onChange={ event => this.filter({ showDisqualified: event.target.value }) } />
+            Show withdrawn:
+            <input type="checkbox" defaultValue={this.state.showWithdrawn} onChange={ event => this.filter({ showWithdrawn: event.target.value }) } />
           </label>
           <button className="btn btn-sm btn-danger" onClick={ event => event.preventDefault() }>Turn Down All</button>
           <button className="btn btn-sm btn-success" onClick={ event => event.preventDefault() }>Invite All</button>
