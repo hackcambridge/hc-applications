@@ -10,6 +10,11 @@ export function makeRawApiCall(accessToken, endpoint, options = { }) {
   return fetch(`${API_BASE}${endpoint}`, Object.assign({ credentials: 'same-origin' }, options, { headers }));
 }
 
+export function makePlainApiCall(accessToken, endpoint, options) {
+  return makeRawApiCall(accessToken, endpoint, options)
+    .then(response => response.text());
+}
+
 export function makeApiCall(accessToken, endpoint, options) {
   return makeRawApiCall(accessToken, endpoint, options)
     .then(response => response.json());

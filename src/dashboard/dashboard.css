@@ -13,3 +13,8 @@
 	overflow: hidden;
 	margin-bottom: 1rem;
 }
+
+.button-right {
+	float: right;
+	margin: 0 4pt;
+}

@@ -113,6 +113,9 @@ export default function Dashboard({ globalStats, userStats }) {
           <Leaderboard leaderboard={globalStats.leaderboard} />
         </Col>
       </Row>
+      <Row>
+        <Button className="button-right" tag={Link} to='/tools' size="small">Tools</Button>
+      </Row>
     </Container>
   );
 }
