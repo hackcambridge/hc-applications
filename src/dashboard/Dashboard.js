@@ -21,6 +21,7 @@ function DashboardJumbotron({ signups, applications, leaderboardPosition }) {
 }
 
 function ApplicantBreakdown({ applicationCount, applicationWithdrawnCount, reviewedCount, rsvpedNoCount, ticketedCount, turnedDownCount, invitedCount, expiredCount }) {
+  const nonWithdrawnApplicationCount = applicationCount - applicationWithdrawnCount;
   return (
     <div>
       <h3>Applicant Breakdown</h3>
@@ -35,20 +36,21 @@ function ApplicantBreakdown({ applicationCount, applicationWithdrawnCount, revie
             dataKey="value"
             data={[
               { name: 'Reviewed', value: reviewedCount, fill: '#0275d8' },
+              { name: 'Awaiting Review', value: nonWithdrawnApplicationCount - reviewedCount, fill: '#aaa' },
               { name: 'Withdrawn', value: applicationWithdrawnCount, fill: '#333' },
-              { name: 'Awaiting Review', value: applicationCount - reviewedCount - applicationWithdrawnCount, fill: '#aaa' },
             ]} />
           <Pie
             cx="50%"
             cy="45%"
             innerRadius={55}
             outerRadius={75}
+            endAngle={nonWithdrawnApplicationCount / applicationCount * 360}
             fill="#8884d8"
             dataKey="value"
             data={[
               { name: 'Invited', value: invitedCount, fill: '#5bc0de' },
               { name: 'Turned Down', value: turnedDownCount, fill: '#f0ad4e' },
-              { name: 'Awaiting Response', value: applicationCount - invitedCount - turnedDownCount, fill: '#bbb' },
+              { name: 'Awaiting Response', value: nonWithdrawnApplicationCount - invitedCount - turnedDownCount, fill: '#bbb' },
             ]} />
           <Pie
             cx="50%"
