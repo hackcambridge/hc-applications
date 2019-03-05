@@ -22,7 +22,7 @@
     "redux-observable": "^0.17.0",
     "rxjs": "^5.0.0-rc.4",
     "shallow-equals": "^1.0.0",
-    "whatwg-fetch": "^2.0.1"
+    "whatwg-fetch": "^2.0.4"
   },
   "engines": {
     "node": "8.13.*"
