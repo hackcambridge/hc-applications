@@ -18,7 +18,7 @@
     "recharts": "^0.22.4",
     "recompose": "^0.26.0",
     "redux": "^3.6.0",
-    "redux-devtools-extension": "^2.13.2",
+    "redux-devtools-extension": "^2.13.8",
     "redux-observable": "^0.17.0",
     "rxjs": "^5.0.0-rc.4",
     "shallow-equals": "^1.0.0",
