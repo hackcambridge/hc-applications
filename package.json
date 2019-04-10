@@ -5,7 +5,7 @@
   "dependencies": {
     "bootstrap": "4.3.1",
     "pushstate-server": "^3.1.0",
-    "rc-table": "^6.4.3",
+    "rc-table": "^6.4.4",
     "react": "^15.4.2",
     "react-dom": "^15.3.0",
     "react-linkify": "^0.2.2",
