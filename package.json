@@ -12,7 +12,7 @@
     "react-redux": "^5.1.1",
     "react-router": "^3.2.1",
     "react-router-redux": "^4.0.7",
-    "react-scripts": "^1.1.5",
+    "react-scripts": "^3.1.1",
     "react-transition-group": "1.x",
     "reactstrap": "^4.8.0",
     "recharts": "^1.6.2",
