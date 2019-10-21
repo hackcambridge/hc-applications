@@ -15,7 +15,7 @@
     "react-scripts": "^1.1.5",
     "react-transition-group": "1.x",
     "reactstrap": "^4.8.0",
-    "recharts": "^1.6.2",
+    "recharts": "^1.8.3",
     "recompose": "^0.30.0",
     "redux": "^3.6.0",
     "redux-devtools-extension": "^2.13.8",
